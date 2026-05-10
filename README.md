@@ -1,26 +1,42 @@
-# IEEE-CIS Fraud Detection
+# Readme 
 
-Detecting fraudulent payment transactions using gradient boosted trees 
-and domain-driven feature engineering with SHAP explainability.
+Kaggle competition: detect fraudulent transactions using the IEEE-CIS dataset. This project explores a two-stage pipeline — a strong LightGBM tabular baseline followed by a Graph Convolutional Network (GCN) embedding augmentation
+**Final result:** 
+| Metric         | Score      |
+|----------------|------------|
+| Validation AUC | **0.9410** |
+| Public LB      | 0.9406     |
+| Private LB     | **0.9183** |
 
-## Status
-🚧 Work in progress
+⠀
+# Dataset
+| **Split** | **Rows** | **Columns** |
+|:-:|:-:|:-:|
+| Train | 590,540 | 434 |
+| Test | 506,691 | 433 |
+1. **Fraud rate:** 3.50% — imbalanced but acceptable (normally less than 1%)
+2. Two source tables merged on TransactionID: train_transaction + train_identity
+3. Features span transaction metadata, card attributes, identity fields, and Vesta-proprietary V/C/D features
 
-## Approach
-1. EDA — identified key fraud patterns (time of day, velocity, amount anomalies)
-2. Feature Engineering — built 15 new features from domain knowledge
-3. Modelling — LightGBM with time-based validation
-4. Explainability — SHAP analysis for regulatory compliance
+Transaction dataset 
+* TransactionDT: timedelta from a given reference datetime (not an actual timestamp)
+* TransactionAMT: transaction payment amount in USD
+* ProductCD: product code, the product for each transaction
+* card1 - card6: payment card information, such as card type, card category, issue bank, country, etc.
+* addr: address
+* dist: distance
+* P_ and (R__) emaildomain: purchaser and recipient email domain
+* C1-C14: counting, such as how many addresses are found to be associated with the payment card, etc. The actual meaning is masked.
+* D1-D15: timedelta, such as days between previous transaction, etc.
+* M1-M9: match, such as names on card and address, etc.
+* Vxxx: Vesta engineered rich features, including ranking, counting, and other entity relations.
 
-## Results
-| Model | AUC |
-|-------|-----|
-| Baseline | 0.9208 |
-| + Feature Engineering |
+Identify dataset:
+Categorical Features: DeviceType DeviceInfo id_12 - id_38, network connection information (IP, ISP, Proxy, etc) and digital signature (UA/browser/os/version, etc) associated with transactions. 
 
-
-## Key Findings
--
-
-## Tech Stack
-Python · LightGBM · XGBoost · SHAP · Pandas · Scikit-learn
+column explaination comes from [IEEE-CIS Fraud Detection](https://www.kaggle.com/competitions/ieee-fraud-detection/discussion/101203)
+⠀
+# Project Structure
+### 
+## Stage 1 — Tabular Baseline
+## Stage 2 — Graph Embeddings
