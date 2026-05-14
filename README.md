@@ -39,4 +39,11 @@ column explaination comes from [IEEE-CIS Fraud Detection](https://www.kaggle.com
 # Project Structure
 ### 
 ## Stage 1 — Tabular Baseline
+This document covers the feature engineering pipeline applied to the competition. We combined domain knowledge with dataset-specific characteristics to construct effective predictive features. The table below summarises the final performance achieved at this stage
+| Metric | Score |
+|--------|-------|
+| Val AUC | **0.9390** |
+| Public LB | 0.9358 |
+| Private LB | **0.9110** |
+
 ## Stage 2 — Graph Embeddings
