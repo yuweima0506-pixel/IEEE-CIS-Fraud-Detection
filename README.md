@@ -39,6 +39,7 @@ column explaination comes from [IEEE-CIS Fraud Detection](https://www.kaggle.com
 # Project Structure
 ### 
 ## Stage 1 — Tabular Baseline
+https://github.com/yuweima0506-pixel/IEEE-CIS-Fraud-Detection/blob/main/README.md#:~:text=Feature-,Engineering,-.pdf
 This document covers the feature engineering pipeline applied to the competition. We combined domain knowledge with dataset-specific characteristics to construct effective predictive features. The table below summarises the final performance achieved at this stage
 | Metric | Score |
 |--------|-------|
