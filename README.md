@@ -36,10 +36,38 @@ Categorical Features: DeviceType DeviceInfo id_12 - id_38, network connection in
 
 column explaination comes from [IEEE-CIS Fraud Detection](https://www.kaggle.com/competitions/ieee-fraud-detection/discussion/101203)
 ⠀
-# Project Structure
+## Project Structure
+
+```
+├── README.md
+├── Supervised Graph Embedding.md
+├── Feature Engineering.pdf
+├── baseline.ipynb
+│
+├── graph_emb/
+│   ├── baseline.ipynb
+│   ├── gcn-graph-emb-static.ipynb
+│   ├── graph-emb-temporal.ipynb
+│   └── stage2_3.ipynb
+│
+└── fea_engineer/
+    ├── model_v4.ipynb
+    ├── model_v5.ipynb
+    ├── model_v6.ipynb
+    ├── uid_overlap_analysis.png
+    ├── high_card_process_compare/
+    │   ├── Distinct_cnt_mode.ipynb
+    │   ├── Global_encoder.ipynb
+    │   ├── SlidingWindow.ipynb
+    │   └── Value_cnt.ipynb
+    └── visual/
+        ├── data-engineering.ipynb
+        └── feature_analysis.ipynb
+```
+
 ### 
 ## Stage 1 — Tabular Baseline
-[Feature Engineering](Feature%20Engineering.pdf)
+[Feature Engineering](Feature%20Engineering.pdf)  
 This document covers the feature engineering pipeline applied to the competition. We combined domain knowledge with dataset-specific characteristics to construct effective predictive features. The table below summarises the final performance achieved at this stage
 | Metric | Score |
 |--------|-------|
@@ -48,3 +76,12 @@ This document covers the feature engineering pipeline applied to the competition
 | Private LB | **0.9110** |
 
 ## Stage 2 — Graph Embeddings
+[Supervised Graph Embedding](Supervised%20Graph%20Embedding.pdf)  
+In this stage, we expected Graph constructed by transaction to provide additioanl information into model. Although the result were not satisfactory, we still improve the overall performance by an incidental findings. 
+| Metric         | Score      |
+|----------------|------------|
+| Validation AUC | **0.9410** |
+| Public LB      | 0.9406     |
+| Private LB     | **0.9183** |
+
+Originally, we intended to apply LSTM to extract sequential patterns from historical transaction. However, this competition didn't offer reliable ID to distinguish each client, effective and discriminative feature would be diluted if transactions from different clients were mixed. 
